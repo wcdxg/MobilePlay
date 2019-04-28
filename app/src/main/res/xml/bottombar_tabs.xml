@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs xmlns:android="http://schemas.android.com/apk/res/android">
+    <tab
+            id = "@id/tab_home"
+            icon="@drawable/ic_bottom_home_icon"
+            title="@string/home"/>
+
+    <tab
+            id = "@id/tab_mv"
+            icon="@drawable/ic_bottom_mv_unselect"
+            title="@string/mv"/>
+    <tab
+            id = "@id/tab_vlist"
+            icon="@drawable/ic_bottom_vlist_unselect"
+            title="@string/vlist"/>
+    <tab
+            id = "@id/tab_yue_dan"
+            icon="@drawable/ic_bottom_mvlist_unselect"
+            title="@string/mv_list"/>
+
+
+</tabs>

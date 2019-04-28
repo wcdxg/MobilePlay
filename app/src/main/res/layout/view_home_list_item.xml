@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="10dp"
+        android:padding="10dp"
+        app:cardUseCompatPadding="true"
+        app:cardPreventCornerOverlap="false"
+        app:cardCornerRadius="10dp">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+
+        <ImageView
+                android:scaleType="centerCrop"
+                android:id="@+id/mainPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"/>
+
+        <!--<ImageView-->
+        <!--android:id="@id/video"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"/>-->
+
+        <!--<View-->
+        <!--android:id="@+id/viewbg"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/transparent_layer"/>-->
+
+        <ImageView
+                android:id="@+id/video_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/home_page_video"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="10dp"/>
+
+        <TextView
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="30dp"
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/video_type"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:text="Title"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+        <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/video_type"
+                android:textColor="@color/green"
+                android:textSize="14sp"
+                android:text="Description"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:layout_alignBottom="@id/video_type"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
