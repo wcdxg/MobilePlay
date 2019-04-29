@@ -28,6 +28,9 @@ open class MRequest<T>(val url: String, val handler: ResponseHandler<T>) {
     }
 
 
+    /**
+     * 直接执行网络请求
+     */
     fun excute() {
         NetManager.manager.sendRequest(this)
     }

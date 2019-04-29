@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="10dp"
+        android:padding="10dp"
+        app:cardUseCompatPadding="true"
+        app:cardPreventCornerOverlap="false"
+        app:cardCornerRadius="10dp">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+
+        <ImageView
+                android:src="@drawable/default_splash_bg"
+                android:scaleType="centerCrop"
+                android:id="@+id/mainPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"/>
+
+        <ImageView
+                android:id="@+id/iv_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="10dp"/>
+
+        <TextView
+                android:layout_above="@+id/tv_author"
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_author"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:text="歌单名称"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+        <TextView
+                android:layout_above="@+id/tv_count"
+                android:id="@+id/tv_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_author"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:text="作者"
+                android:ellipsize="end"
+                android:maxLines="1"/>
+
+        <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_author"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:text="数量"
+                android:ellipsize="end"
+                android:layout_alignParentBottom="true"
+                android:maxLines="1"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

@@ -18,7 +18,7 @@ interface ToolBarManager {
      * 初始化主界面的Toolbar
      */
     fun initMainToolBar() {
-        toolBar.title = "手机影音"
+        toolBar.title = "网易云音乐"
         toolBar.inflateMenu(R.menu.main)
 
 

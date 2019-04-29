@@ -2,26 +2,15 @@ package com.example.player.ui.fragment
 
 import android.graphics.Color
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.view.Gravity
-import android.view.View
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.R
 import com.example.player.base.BaseFragment
 import com.example.player.model.HomeItemBean
 import com.example.player.presenter.impl.HomePresenterImpl
-import com.example.player.ui.activity.MainActivity
 import com.example.player.ui.adapter.HomeAdapter
-import com.example.player.utils.ThreadUtil
-import com.example.player.utils.URLProviderUtil
 import com.example.player.view.HomeView
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.view_home_list_item.*
-import okhttp3.*
 import org.jetbrains.anko.support.v4.toast
-import java.io.IOException
 
 /**
  *   Create by hanjun

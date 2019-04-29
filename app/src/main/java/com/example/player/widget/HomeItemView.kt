@@ -2,14 +2,13 @@ package com.example.player.widget
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
 import com.example.kotlin.R
 import com.example.player.model.HomeItemBean
 import com.example.player.utils.MusicTypeUtil
-import kotlinx.android.synthetic.main.view_home_list_item.view.*
+import kotlinx.android.synthetic.main.item_home.view.*
 
 /**
  *   Create by hanjun
@@ -24,7 +23,7 @@ class HomeItemView : RelativeLayout {
 
 
     init {
-        View.inflate(context, R.layout.view_home_list_item, this)
+        View.inflate(context, R.layout.item_home, this)
 
     }
 

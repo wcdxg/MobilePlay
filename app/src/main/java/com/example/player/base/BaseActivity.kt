@@ -1,11 +1,11 @@
 package com.example.player.base
 
+import android.os.Build
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.example.player.ui.activity.MainActivity
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.debug
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
@@ -18,6 +18,13 @@ abstract class BaseActivity : AppCompatActivity(), AnkoLogger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS or WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
+            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        }
         setContentView(getLayoutId())
         initListener()
         initData()
@@ -50,9 +57,9 @@ abstract class BaseActivity : AppCompatActivity(), AnkoLogger {
         }
     }
 
-   inline fun <reified T:BaseActivity>startActivityAndFinish(){
-       startActivity<T>()
-       finish()
-   }
+    inline fun <reified T : BaseActivity> startActivityAndFinish() {
+        startActivity<T>()
+        finish()
+    }
 
 }
