@@ -15,7 +15,7 @@ class YueDanPresenterImpl(var yueDanView: YueDanView?) : YueDanPresenter, Respon
 
     var isLoadMore = false
 
-    fun destory() {
+    override fun destory() {
         yueDanView?.let {
             yueDanView = null
         }

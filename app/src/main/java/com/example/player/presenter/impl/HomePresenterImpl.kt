@@ -15,7 +15,7 @@ class HomePresenterImpl(var homeView: HomeView?) : HomePresenter, ResponseHandle
     /**
      * View和Presenter解绑
      */
-    fun destory(){
+    override fun destory() {
         homeView?.let {
             homeView = null
         }
@@ -23,14 +23,14 @@ class HomePresenterImpl(var homeView: HomeView?) : HomePresenter, ResponseHandle
 
 
     //加载更多或者是初始化数据
-    var isLoadMore : Boolean = false
+    var isLoadMore: Boolean = false
 
     override fun onError(msg: String?) {
         homeView?.onError(msg)
     }
 
     override fun onSuccess(result: List<HomeItemBean>) {
-        homeView?.loadSuccess(result,isLoadMore)
+        homeView?.loadSuccess(result, isLoadMore)
     }
 
 
