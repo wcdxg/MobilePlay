@@ -25,7 +25,7 @@ public class URLProviderUtil {
 				+ "&offset="+offset
 				+"&size="+size
 				+"&v=4&rn=640*540";
-		Log.i("Main_url",url);
+		Log.i("data",url);
 		return url;
 	}
 	public static String getMVareaUrl(){
@@ -40,6 +40,7 @@ public class URLProviderUtil {
 				+ "\"uid\":"
 				+ "\"dbcaa6c4482bc05ecb0bf39dabf207d2\","
 				+ "\"clid\":110025000}";
+		Log.i("data",url);
 		return url;
 	}
 	public static String getMVListUrl(String area,int offset,int size){
@@ -57,6 +58,7 @@ public class URLProviderUtil {
 				+ "&area="+area
 				+ "&offset="+offset
 				+ "&size="+size;
+		Log.i("data",url);
 		return url;
 	}
 	public static String getYueDanUrl(int offset,int size){
@@ -73,6 +75,7 @@ public class URLProviderUtil {
 				+ "\"clid\":110025000}"
 				+ "&offset="+offset
 				+ "&size="+size;
+		Log.i("data",url);
 		return url;
 	}
 
@@ -98,6 +101,7 @@ public class URLProviderUtil {
 				+ "&offset="+offset
 				+ "&size="+size
 				+ "&artistIds="+artistIds;
+		Log.i("data",url);
 		return url;
 	}
 	/**
@@ -116,6 +120,7 @@ public class URLProviderUtil {
 				+ "\"uid\":"
 				+ "\"dbcaa6c4482bc05ecb0bf39dabf207d2\","
 				+ "\"clid\":110025000}";
+		Log.i("data",url);
 		return url;
 	}
 	/**
@@ -135,6 +140,7 @@ public class URLProviderUtil {
 				+ "\"dbcaa6c4482bc05ecb0bf39dabf207d2\","
 				+ "\"clid\":110025000}"
 				+ "&area="+area;
+		Log.i("data",url);
 		return url;
 	}
 	/**
@@ -157,6 +163,7 @@ public class URLProviderUtil {
 				+ "\"clid\":110025000}"
 				+ "&area="+area
 				+ "&datecode="+dateCode;
+		Log.i("data",url);
 		return url;
 	}
 	/**
@@ -178,6 +185,7 @@ public class URLProviderUtil {
 				+ "\"clid\":110025000}"
 				+ "&relatedVideos=true"
 				+ "&id="+id;
+		Log.i("data",url);
 		return url;
 	}
 	/**
@@ -198,6 +206,7 @@ public class URLProviderUtil {
 				+ "\"dbcaa6c4482bc05ecb0bf39dabf207d2\","
 				+ "\"clid\":110025000}"
 				+ "&id="+id;
+		Log.i("data",url);
 		return url;
 	}
 

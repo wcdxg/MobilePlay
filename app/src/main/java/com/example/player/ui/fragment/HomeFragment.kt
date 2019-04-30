@@ -50,8 +50,7 @@ class HomeFragment : BaseFragment(), HomeView {
                     //RecyclerView停止滑动 并且显示的是最后一条
                     val layoutManager = recyclerView.layoutManager
                     if (layoutManager is LinearLayoutManager) {
-                        val manage: LinearLayoutManager = layoutManager
-                        val lastPosition = manage.findLastVisibleItemPosition()
+                        val lastPosition = layoutManager.findLastVisibleItemPosition()
                         if (lastPosition == adapter.itemCount - 1) {
                             presenter.loadData(adapter.itemCount, true)
                         }

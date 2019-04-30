@@ -32,10 +32,10 @@ class HomeAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<HomeAdapte
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeHolder {
-        if (viewType == 1) {
-            return HomeHolder(LoadMoreView(parent.context))
+        return if (viewType == 1) {
+            HomeHolder(LoadMoreView(parent.context))
         } else {
-            return HomeHolder(HomeItemView(parent.context))
+            HomeHolder(HomeItemView(parent.context))
         }
     }
 
