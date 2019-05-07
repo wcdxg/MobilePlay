@@ -24,7 +24,6 @@ class HomeItemView : RelativeLayout {
 
     init {
         View.inflate(context, R.layout.item_home, this)
-
     }
 
 

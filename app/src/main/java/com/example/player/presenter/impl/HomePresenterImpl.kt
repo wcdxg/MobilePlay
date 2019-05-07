@@ -1,16 +1,17 @@
 package com.example.player.presenter.impl
 
+import com.example.player.base.BaseView
 import com.example.player.model.HomeItemBean
 import com.example.player.net.HomeRequest
 import com.example.player.net.ResponseHandler
 import com.example.player.presenter.interf.HomePresenter
-import com.example.player.view.HomeView
 
 /**
  *   Create by hanjun
  *   on 2019-04-28
  */
-class HomePresenterImpl(var homeView: HomeView?) : HomePresenter, ResponseHandler<List<HomeItemBean>> {
+class HomePresenterImpl(var homeView: BaseView<List<HomeItemBean>>?) : HomePresenter,
+    ResponseHandler<List<HomeItemBean>> {
 
     /**
      * View和Presenter解绑

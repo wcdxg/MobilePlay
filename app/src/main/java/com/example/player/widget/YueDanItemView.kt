@@ -5,13 +5,11 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.example.kotlin.R
 import com.example.player.model.PlayLists
 import com.example.player.utils.GlideUtil
 import com.example.player.utils.LogUtil
-import jp.wasabeef.glide.transformations.CropCircleTransformation
 import kotlinx.android.synthetic.main.item_yuedan.view.*
 
 /**
@@ -40,7 +38,7 @@ class YueDanItemView : RelativeLayout {
         tv_author.text = data.creator.nickName
         //头像开头有//斜杠
         val url = data.creator.largeAvatar.replace("//", "http://")
-        LogUtil.logUtil.d("url",url)
+        LogUtil.logUtil.d("url", url)
         Glide.with(context).load(url).apply(RequestOptions.circleCropTransform()).into(iv_author)
 
     }

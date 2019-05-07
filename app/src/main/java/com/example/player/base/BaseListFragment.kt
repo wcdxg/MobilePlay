@@ -1,13 +1,10 @@
 package com.example.player.base
 
 import android.graphics.Color
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.R
-import com.example.player.model.HomeItemBean
-import com.example.player.presenter.impl.HomePresenterImpl
-import com.example.player.ui.adapter.HomeAdapter
-import com.example.player.view.HomeView
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.support.v4.toast
 
@@ -20,15 +17,16 @@ import org.jetbrains.anko.support.v4.toast
  * Presenter->BasePresenter
  * HomeAdapter->BaseAdapter
  */
-class BaseListFragment : BaseFragment(), HomeView {
+abstract class BaseListFragment<RESPONSE, ITEMBEAN, ITEMVIEW : View> : BaseFragment(), BaseView<RESPONSE> {
 
     private val adapter by lazy {
-        HomeAdapter()
+        getSpecialAdapter()
     }
 
     private val presenter by lazy {
-        HomePresenterImpl(this)
+        getSpecialPresenter()
     }
+
 
     override fun initView(): Int {
         return R.layout.fragment_home
@@ -73,21 +71,36 @@ class BaseListFragment : BaseFragment(), HomeView {
         swipe_refresh.isRefreshing = false
     }
 
-    override fun loadSuccess(list: List<HomeItemBean>?, isLoadMore: Boolean) {
+    override fun loadSuccess(response: RESPONSE?, isLoadMore: Boolean) {
         toast("加载数据成功")
         swipe_refresh.isRefreshing = false
         if (isLoadMore) {
             //加载更多
-            adapter.loadMoreData(list)
+            adapter.loadMoreData(getList(response))
         } else {
-            adapter.updateList(list)
+            adapter.updateList(getList(response))
         }
     }
 
 
+    /**
+     * 获取适配器Adapter
+     */
+    abstract fun getSpecialAdapter(): BaseListAdapter<ITEMBEAN, ITEMVIEW>
+
+    /**
+     * 获取Presenter
+     */
+    abstract fun getSpecialPresenter(): BaseListPresenter
+
+    /**
+     * 从返回结果中获取数据列表集合
+     */
+    abstract fun getList(response: RESPONSE?): List<ITEMBEAN>?
+
     override fun onDestroyView() {
         super.onDestroyView()
+        //解绑presenter
         presenter.destory()
     }
-
 }

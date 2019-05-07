@@ -16,7 +16,7 @@ interface BaseView<RESPONSE> {
      * @param list 返回结果
      * @param isLoadMore 是加载更多还是初始化
      */
-    fun loadSuccess(list: RESPONSE?, isLoadMore: Boolean)
+    fun loadSuccess(response: RESPONSE?, isLoadMore: Boolean)
 
 
 }
