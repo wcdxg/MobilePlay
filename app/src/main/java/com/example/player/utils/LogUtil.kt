@@ -1,6 +1,5 @@
 package com.example.player.utils
 
-import android.os.Build
 import android.util.Log
 import com.example.kotlin.BuildConfig
 
@@ -10,7 +9,7 @@ import com.example.kotlin.BuildConfig
  */
 class LogUtil private constructor() {
 
-    var isDebug: Boolean = BuildConfig.DEBUG
+    private var isDebug: Boolean = BuildConfig.DEBUG
 
     companion object {
         val logUtil by lazy {
@@ -26,21 +25,21 @@ class LogUtil private constructor() {
 
     fun d(tag: String = javaClass.simpleName, msg: String) {
         if (isDebug)
-        Log.d(tag, msg)
+            Log.d(tag, msg)
     }
 
     fun e(tag: String = javaClass.simpleName, msg: String) {
         if (isDebug)
-        Log.e(tag, msg)
+            Log.e(tag, msg)
     }
 
     fun i(tag: String = javaClass.simpleName, msg: String) {
         if (isDebug)
-        Log.i(tag, msg)
+            Log.i(tag, msg)
     }
 
     fun w(tag: String = javaClass.simpleName, msg: String) {
         if (isDebug)
-        Log.w(tag, msg)
+            Log.w(tag, msg)
     }
 }
