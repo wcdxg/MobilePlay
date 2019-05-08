@@ -1,5 +1,6 @@
 package com.example.player.net
 
+import com.example.player.model.MvPagerBean
 import com.example.player.utils.URLProviderUtil
 
 /**
@@ -7,7 +8,7 @@ import com.example.player.utils.URLProviderUtil
  * on 2019/5/8
  * MV List请求
  */
-class MvListRequest(args: String, offset: Int, handler: ResponseHandler<String>) :
-    MRequest<String>(URLProviderUtil.getMVListUrl(args, offset, 20), handler) {
+class MvListRequest(area: String, offset: Int, handler: ResponseHandler<MvPagerBean>) :
+    MRequest<MvPagerBean>(URLProviderUtil.getMVListUrl(area, offset, 20), handler) {
 
 }

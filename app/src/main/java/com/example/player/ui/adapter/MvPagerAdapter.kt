@@ -20,7 +20,7 @@ class MvPagerAdapter(val context: Context?, val list: List<MvAreaBean>?, fm: Fra
         //Fragment传递数据第一种方式 Arguments
 //        val fragment = MvPagerFragment()
         val bundle = Bundle()
-        bundle.putString("args", list?.get(position)?.name)
+        bundle.putString("args", list?.get(position)?.code)
 //        fragment.arguments = bundle
         //Fragment传递数据第二种方式 instantiate
         val fragment = Fragment.instantiate(context, MvPagerFragment::class.java.name, bundle)

@@ -40,6 +40,6 @@ class MvFragment : BaseFragment(), BaseView<List<MvAreaBean>> {
     }
 
     override fun initData() {
-        presenter.loadData()
+        presenter.loadData(0, false)
     }
 }

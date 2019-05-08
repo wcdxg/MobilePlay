@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.widget.RelativeLayout
 import com.example.kotlin.R
 import com.example.player.model.VideoBean
+import com.example.player.utils.GlideUtil
+import kotlinx.android.synthetic.main.item_mv.view.*
 
 /**
  * Created by Yuaihen.
@@ -24,6 +26,8 @@ class MvItemView : RelativeLayout {
     }
 
     fun setData(data: VideoBean) {
-
+        GlideUtil.glideUtil.setUrl(context, data.albumImg, iv_bigPic)
+        tv_aritst.text = data.artistName
+        tv_song_name.text = data.title
     }
 }
