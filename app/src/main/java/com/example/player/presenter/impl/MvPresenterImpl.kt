@@ -9,6 +9,7 @@ import com.example.player.presenter.interf.MvPresenter
 /**
  * Created by Yuaihen.
  * on 2019/5/8
+ * MV区域界面Presenter
  */
 class MvPresenterImpl(var mvView: BaseView<List<MvAreaBean>>?) : MvPresenter, ResponseHandler<List<MvAreaBean>> {
 

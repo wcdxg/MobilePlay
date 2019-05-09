@@ -7,15 +7,15 @@ import com.example.kotlin.BuildConfig
  *   Create by hanjun
  *   on 2019-04-29
  */
-class LogUtil private constructor() {
+object LogUtil {
 
     private var isDebug: Boolean = BuildConfig.DEBUG
 
-    companion object {
-        val logUtil by lazy {
-            LogUtil()
-        }
-    }
+//    companion object {
+//        val logUtil by lazy {
+//            LogUtil()
+//        }
+//    }
 
     fun v(tag: String = javaClass.simpleName, msg: String) {
         if (isDebug) {

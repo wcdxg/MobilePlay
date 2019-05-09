@@ -72,7 +72,7 @@ abstract class BaseListFragment<RESPONSE, ITEMBEAN, ITEMVIEW : View> : BaseFragm
     }
 
     override fun loadSuccess(response: RESPONSE?, isLoadMore: Boolean) {
-        toast("加载数据成功")
+//        toast("加载数据成功")
         swipe_refresh.isRefreshing = false
         if (isLoadMore) {
             //加载更多

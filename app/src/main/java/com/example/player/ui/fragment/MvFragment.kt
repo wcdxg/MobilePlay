@@ -20,7 +20,7 @@ class MvFragment : BaseFragment(), BaseView<List<MvAreaBean>> {
     }
 
     override fun loadSuccess(response: List<MvAreaBean>?, isLoadMore: Boolean) {
-        myToast("加载区域数据成功")
+//        myToast("加载区域数据成功")
         val adapter = MvPagerAdapter(context, response, childFragmentManager)
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)

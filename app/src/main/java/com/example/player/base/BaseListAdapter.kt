@@ -60,7 +60,37 @@ abstract class BaseListAdapter<ITEMBEAN, ITEMVIEW : View> :
 //        itemView.setData(data)
         //条目刷新
         refreshView(itemView, data)
+        //设置条目点击时间
+        itemView.setOnClickListener {
+            //第一种方式
+//            listener?.let {
+//                it(data)
+//            }
+
+            //第二种方式
+            listener?.invoke(data)
+        }
     }
+
+
+    //Kotlin写法接口回调
+    private var listener: ((itemBean: ITEMBEAN) -> Unit)? = null
+
+    fun setMyItemListener(listener: (itemBean: ITEMBEAN) -> Unit) {
+        this.listener = listener
+    }
+
+    //Java 写法接口回调
+//    var listener: Listener<ITEMBEAN>? = null
+//
+//    interface Listener<ITEMBEAN> {
+//        fun onItemClick(itemBean: ITEMBEAN)
+//    }
+//
+//    fun setMyItemListener(listener: Listener<ITEMBEAN>) {
+//        this.listener = listener
+//    }
+
 
     class BaseListHolder(itemView: View?) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView!!)
 

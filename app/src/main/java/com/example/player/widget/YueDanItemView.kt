@@ -32,13 +32,13 @@ class YueDanItemView : RelativeLayout {
      * 适配数据
      */
     fun setData(data: PlayLists) {
-        GlideUtil.glideUtil.setUrl(context, data.playListBigPic, iv_bigPic)
+        GlideUtil.setUrl(context, data.playListBigPic, iv_bigPic)
         tv_title.text = data.title
         tv_count.text = data.videoCount.toString()
         tv_author.text = data.creator.nickName
         //头像开头有//斜杠
         val url = data.creator.largeAvatar.replace("//", "http://")
-        LogUtil.logUtil.d("url", url)
+        LogUtil.d("url", url)
         Glide.with(context).load(url).apply(RequestOptions.circleCropTransform()).into(iv_author)
 
     }

@@ -26,7 +26,7 @@ class MvItemView : RelativeLayout {
     }
 
     fun setData(data: VideoBean) {
-        GlideUtil.glideUtil.setUrl(context, data.albumImg, iv_bigPic)
+        GlideUtil.setUrl(context, data.albumImg, iv_bigPic)
         tv_aritst.text = data.artistName
         tv_song_name.text = data.title
     }

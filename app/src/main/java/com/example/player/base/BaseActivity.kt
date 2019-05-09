@@ -57,7 +57,7 @@ abstract class BaseActivity : AppCompatActivity(), AnkoLogger {
         }
     }
 
-    inline fun <reified T : BaseActivity> startActivityAndFinish() {
+   inline fun <reified T : BaseActivity> startActivityAndFinish() {
         startActivity<T>()
         finish()
     }
