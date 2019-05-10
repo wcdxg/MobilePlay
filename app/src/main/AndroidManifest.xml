@@ -32,6 +32,8 @@
 
         <activity android:name="com.example.player.ui.activity.SettingActivity"/>
         <activity android:name="com.example.player.ui.activity.VideoPlayerActivity"/>
+        <activity android:name="com.example.player.ui.activity.TextureVideoPlayerActivity"/>
+        <activity android:name="com.example.player.ui.activity.IjkVideoPlayerActivity"/>
     </application>
 
 </manifest>

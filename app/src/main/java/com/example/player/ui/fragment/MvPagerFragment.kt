@@ -7,7 +7,7 @@ import com.example.player.model.MvPagerBean
 import com.example.player.model.VideoBean
 import com.example.player.model.VideoPlayBean
 import com.example.player.presenter.impl.MvListPresenterImpl
-import com.example.player.ui.activity.VideoPlayerActivity
+import com.example.player.ui.activity.IjkVideoPlayerActivity
 import com.example.player.ui.adapter.MvListAdapter
 import com.example.player.widget.MvItemView
 import org.jetbrains.anko.support.v4.startActivity
@@ -46,9 +46,9 @@ class MvPagerFragment : BaseListFragment<MvPagerBean, VideoBean, MvItemView>() {
         //条目点击事件监听
         adapter.setMyItemListener {
             //TODO 标清 高清 超清 切换
-            val videoPlayBean = VideoPlayBean(it.id, it.title, it.hdUrl, it.description)
+            val videoPlayBean = VideoPlayBean(it.id, it.title, it.url, it.description)
             //跳转到视频播放界面
-            startActivity<VideoPlayerActivity>("item" to videoPlayBean)
+            startActivity<IjkVideoPlayerActivity>("item" to videoPlayBean)
         }
     }
 

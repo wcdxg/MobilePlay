@@ -20,7 +20,10 @@ class VideoPlayerActivity : BaseActivity() {
         //获取传递的数据
         val videoPlayBean = intent.getParcelableExtra<VideoPlayBean>("item")
 
-        videoView.setVideoPath(videoPlayBean.url)
-        videoView.start()
+        videoView.setVideoPath(videoPlayBean.url)//异步的
+//        videoView.start()
+        videoView.setOnPreparedListener {
+            videoView.start()
+        }
     }
 }
