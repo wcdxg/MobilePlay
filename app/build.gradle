@@ -45,4 +45,5 @@ dependencies {
     //ijkPlayer
     implementation 'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.6'
     implementation 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.6.0'
+    implementation 'cn.jzvd:jiaozivideoplayer:7.0.3'
 }
