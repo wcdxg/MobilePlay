@@ -2,6 +2,7 @@ package com.example.player.ui.fragment
 
 import com.example.kotlin.R
 import com.example.player.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_vbang.*
 
 /**
  *   Create by hanjun
@@ -15,5 +16,8 @@ class VBangFragment : BaseFragment() {
         return R.layout.fragment_vbang
     }
 
+    override fun initListener() {
+        listView.adapter
+    }
 
 }

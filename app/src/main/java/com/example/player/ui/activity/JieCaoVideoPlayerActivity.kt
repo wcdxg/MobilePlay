@@ -1,15 +1,18 @@
 package com.example.player.ui.activity
 
+import androidx.viewpager.widget.ViewPager
 import cn.jzvd.Jzvd
 import com.example.kotlin.R
 import com.example.player.base.BaseActivity
 import com.example.player.model.VideoPlayBean
+import com.example.player.ui.adapter.VideoPagerAdapter
 import com.example.player.utils.GlideUtil
 import kotlinx.android.synthetic.main.activity_video_player_jiecao.*
 
 /**
  * Created by Yuaihen.
  * on 2019/5/9
+ * 使用节操播放器播放视频页面
  */
 class JieCaoVideoPlayerActivity : BaseActivity() {
 
@@ -17,6 +20,28 @@ class JieCaoVideoPlayerActivity : BaseActivity() {
     override fun getLayoutId(): Int {
         return R.layout.activity_video_player_jiecao
     }
+
+    override fun initListener() {
+        viewPager.adapter = VideoPagerAdapter(supportFragmentManager)
+        viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener() {
+            override fun onPageSelected(position: Int) {
+                when (position) {
+                    0 -> rg.check(R.id.rb1)
+                    1 -> rg.check(R.id.rb2)
+                    2 -> rg.check(R.id.rb3)
+                }
+            }
+        })
+
+        rg.setOnCheckedChangeListener { group, checkedId ->
+            when (checkedId) {
+                R.id.rb1 -> viewPager.currentItem = 0
+                R.id.rb2 -> viewPager.currentItem = 1
+                R.id.rb3 -> viewPager.currentItem = 2
+            }
+        }
+    }
+
 
     override fun initData() {
         val data = intent.data
@@ -35,10 +60,7 @@ class JieCaoVideoPlayerActivity : BaseActivity() {
                 //本地视频
                 jiecao_videoView.setUp(data.path, data.toString(), Jzvd.SCREEN_NORMAL)
             }
-
         }
-
-
     }
 
 
