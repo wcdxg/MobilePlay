@@ -47,6 +47,7 @@
         </activity>
         <activity android:name="com.example.player.ui.activity.AudioPlayerActivity"
                   android:configChanges="screenSize|orientation|keyboardHidden"/>
+        <service android:name="com.example.player.service.AudioService"/>
     </application>
 
 </manifest>
