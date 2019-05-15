@@ -6,4 +6,8 @@ package com.example.player.service
  */
 interface Iservice {
 
+    fun updatePlayState()
+
+    fun isPlaying(): Boolean?
+
 }

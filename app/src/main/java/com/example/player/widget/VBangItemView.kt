@@ -26,8 +26,7 @@ class VBangItemView : RelativeLayout {
     }
 
     fun setData(itemBean: AudioBean) {
-        val name = itemBean.display_name
-        music_name.text = name.substring(0,name.lastIndexOf("."))
+        music_name.text = itemBean.display_name
         artist.text = itemBean.artist
         size.text = Formatter.formatFileSize(context, itemBean.size)
 

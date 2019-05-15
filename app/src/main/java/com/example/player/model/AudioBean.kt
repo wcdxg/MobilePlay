@@ -48,7 +48,8 @@ data class AudioBean(
             cursor?.let {
                 bean.data = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA))
                 bean.size = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.SIZE))
-                bean.display_name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME))
+                var name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME))
+                bean.display_name = name.substring(0, name.lastIndexOf("."))
                 bean.artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST))
             }
             return bean

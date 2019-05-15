@@ -6,26 +6,26 @@ import android.media.MediaPlayer
 import android.os.Binder
 import android.os.IBinder
 import com.example.player.model.AudioBean
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Created by Yuaihen.
  * on 2019/5/15
  */
 class AudioService : Service() {
+
     private var mediaPlayer: MediaPlayer? = null
     private var list: ArrayList<AudioBean>? = null
     private var position = 0
+
     private val binder by lazy { AudioBinder() }
 
-    override fun onCreate() {
-        super.onCreate()
-    }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         list = intent?.getParcelableArrayListExtra<AudioBean>("list")
         position = intent?.getIntExtra("position", 0) ?: 0
         binder.playItem()
-        return super.onStartCommand(intent, flags, startId)
+        return START_NOT_STICKY
     }
 
     override fun onBind(intent: Intent?): IBinder? {
@@ -33,9 +33,38 @@ class AudioService : Service() {
     }
 
 
-    inner class AudioBinder : Binder(), MediaPlayer.OnPreparedListener {
+    inner class AudioBinder : Binder(), Iservice, MediaPlayer.OnPreparedListener {
+        override fun updatePlayState() {
+            //获取当前播放状态
+            val isplaying = isPlaying()
+            //切换播放状态
+            isplaying?.let {
+                if (it) {
+                    //播放->暂停
+                    mediaPlayer?.pause()
+                } else {
+                    //暂停-播放
+                    mediaPlayer?.start()
+                }
+            }
+
+        }
+
+        override fun isPlaying(): Boolean? {
+            return mediaPlayer?.isPlaying
+        }
+
         override fun onPrepared(mp: MediaPlayer?) {
             mediaPlayer?.start()
+            //通知界面更新
+            nofityUpdateUi()
+        }
+
+        /**
+         * 通知界面更新
+         */
+        private fun nofityUpdateUi() {
+            EventBus.getDefault().post(list?.get(position))
         }
 
         fun playItem() {
