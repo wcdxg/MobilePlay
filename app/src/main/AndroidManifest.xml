@@ -45,6 +45,8 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+        <activity android:name="com.example.player.ui.activity.AudioPlayerActivity"
+                  android:configChanges="screenSize|orientation|keyboardHidden"/>
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@ import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CursorAdapter
-import com.example.player.model.VBangBean
+import com.example.player.model.AudioBean
 import com.example.player.widget.VBangItemView
 
 /**
@@ -27,7 +27,7 @@ class VBangAdapter(context: Context?, c: Cursor?) : CursorAdapter(context, c) {
      */
     override fun bindView(view: View?, context: Context?, cursor: Cursor?) {
         val itemView = view as VBangItemView
-        val itemBean = VBangBean.getVBangBean(cursor)
+        val itemBean = AudioBean.getAudioBean(cursor)
         itemView.setData(itemBean)
     }
 
