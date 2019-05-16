@@ -9,5 +9,7 @@ interface Iservice {
     fun updatePlayState()
 
     fun isPlaying(): Boolean?
+    fun getDuration(): Int
+    fun getProgress(): Int
 
 }

@@ -34,6 +34,21 @@ class AudioService : Service() {
 
 
     inner class AudioBinder : Binder(), Iservice, MediaPlayer.OnPreparedListener {
+
+        /**
+         * 获取当前进度
+         */
+        override fun getProgress(): Int {
+            return mediaPlayer?.currentPosition ?: 0
+        }
+
+        /**
+         * 获取歌曲总时长
+         */
+        override fun getDuration(): Int {
+            return mediaPlayer?.duration ?: 0
+        }
+
         override fun updatePlayState() {
             //获取当前播放状态
             val isplaying = isPlaying()
