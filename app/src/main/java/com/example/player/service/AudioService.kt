@@ -1,6 +1,7 @@
 package com.example.player.service
 
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Binder
@@ -19,6 +20,7 @@ class AudioService : Service() {
     private var list: ArrayList<AudioBean>? = null
     private var position = 0
     private val binder by lazy { AudioBinder() }
+    private val sp by lazy { getSharedPreferences("config", Context.MODE_PRIVATE) }
 
     companion object {
         //播放模式
@@ -26,6 +28,11 @@ class AudioService : Service() {
         val MODE_SINGLE = 2//单曲循环
         val MODE_RANDOM = 3//随机播放
         var mode = MODE_ALL//当前播放模式
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        mode = sp.getInt("mode", 1)
     }
 
 
@@ -64,6 +71,7 @@ class AudioService : Service() {
                 MODE_RANDOM -> mode = MODE_ALL
             }
 
+            sp.edit().putInt("mode", mode).apply()
         }
 
         override fun seekTo(progress: Int) {
