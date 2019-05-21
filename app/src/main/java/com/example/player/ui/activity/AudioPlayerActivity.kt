@@ -7,6 +7,7 @@ import android.graphics.drawable.AnimationDrawable
 import android.os.Handler
 import android.os.IBinder
 import android.view.View
+import android.widget.SeekBar
 import com.example.kotlin.R
 import com.example.player.base.BaseActivity
 import com.example.player.model.AudioBean
@@ -27,7 +28,26 @@ import org.greenrobot.eventbus.ThreadMode
  */
 const val MSG_UPDATE_PROGRESS = 0
 
-class AudioPlayerActivity : BaseActivity(), View.OnClickListener {
+class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeekBarChangeListener {
+    /**
+     * @param progress 改变之后的进度
+     * @param fromUser true用户手指拖动改变进度 false通过代码改变
+     * */
+    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+        if (!fromUser) return
+        //更新播放进度
+        iService?.seekTo(progress)
+        //更新界面进度显示
+        updateProgress(progress)
+    }
+
+    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+    }
+
+    override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+    }
 
     var audioBean: AudioBean? = null
     var drawable: AnimationDrawable? = null
@@ -43,7 +63,18 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener {
         when (v?.id) {
             R.id.state -> updatePlayState()
             R.id.back -> finish()
+            R.id.mode -> updatePlayMode()
         }
+    }
+
+    /**
+     * 更新播放模式图标
+     */
+    private fun updatePlayMode() {
+        //修改Service中的模式
+
+        //修改图标
+
     }
 
     private fun updatePlayState() {
@@ -81,6 +112,7 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener {
         //播放状态切换
         state.setOnClickListener(this)
         back.setOnClickListener(this)
+        progress_sk.setOnSeekBarChangeListener(this)
     }
 
     /**
@@ -121,6 +153,7 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener {
     private fun updateProgress(pro: Int) {
         //更新进度数值
         progress.text = (StringUtil.parseDuration(pro) + "/").plus(StringUtil.parseDuration(duration))
+        progress_sk.progress = pro
     }
 
 
