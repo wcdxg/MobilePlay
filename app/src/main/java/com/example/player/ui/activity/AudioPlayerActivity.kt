@@ -12,6 +12,7 @@ import com.example.kotlin.R
 import com.example.player.base.BaseActivity
 import com.example.player.model.AudioBean
 import com.example.player.service.AudioService
+import com.example.player.service.AudioService.Companion.mode
 import com.example.player.service.Iservice
 import com.example.player.utils.StringUtil
 import kotlinx.android.synthetic.main.activity_music_player_bottom.*
@@ -63,7 +64,7 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeek
         when (v?.id) {
             R.id.state -> updatePlayState()
             R.id.back -> finish()
-            R.id.mode -> updatePlayMode()
+            R.id.playMode -> updatePlayMode()
         }
     }
 
@@ -72,8 +73,22 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeek
      */
     private fun updatePlayMode() {
         //修改Service中的模式
-
+        iService?.updatePlayMode()
         //修改图标
+        updatePlayModeBtn()
+    }
+
+    /**
+     * 修改播放模式图标
+     */
+    private fun updatePlayModeBtn() {
+        iService?.let {
+            when (it.getPlayMode()) {
+                AudioService.MODE_ALL -> playMode.setImageResource(R.drawable.selector_btn_playmode_order)
+                AudioService.MODE_SINGLE -> playMode.setImageResource(R.drawable.selector_btn_playmode_single)
+                AudioService.MODE_RANDOM -> playMode.setImageResource(R.drawable.selector_btn_playmode_random)
+            }
+        }
 
     }
 
@@ -113,6 +128,7 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeek
         state.setOnClickListener(this)
         back.setOnClickListener(this)
         progress_sk.setOnSeekBarChangeListener(this)
+        playMode.setOnClickListener(this)
     }
 
     /**
@@ -135,6 +151,8 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeek
         progress_sk.max = duration
         //更新播放进度
         startUpdateDuration()
+        //更新播放模式图标
+        updatePlayModeBtn()
     }
 
     /**
