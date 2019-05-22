@@ -18,7 +18,7 @@ class AudioService : Service() {
 
     private var mediaPlayer: MediaPlayer? = null
     private var list: ArrayList<AudioBean>? = null
-    private var position = 0
+    private var position = -2
     private val binder by lazy { AudioBinder() }
     private val sp by lazy { getSharedPreferences("config", Context.MODE_PRIVATE) }
 
@@ -37,9 +37,14 @@ class AudioService : Service() {
 
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        list = intent?.getParcelableArrayListExtra<AudioBean>("list")
-        position = intent?.getIntExtra("position", 0) ?: 0
-        binder.playItem()
+        val pos = intent?.getIntExtra("position", 0) ?: 0
+        if (pos != position) {
+            position = pos
+            list = intent?.getParcelableArrayListExtra<AudioBean>("list")
+            binder.playItem()
+        } else {
+            binder.nofityUpdateUi()
+        }
 
         // START_STICKY: service强制杀死之后，会尝试重新启动， 不会传递原来的intent
         // START_NOT_STICKY: service强制杀死之后，不会重新启动
@@ -53,6 +58,37 @@ class AudioService : Service() {
 
 
     inner class AudioBinder : Binder(), Iservice, MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
+        /**
+         * 下一曲
+         */
+        override fun playNext() {
+            list?.let {
+                when (mode) {
+                    MODE_RANDOM -> position = Random.nextInt(it.size)
+                    else -> position = (position + 1) % it.size
+                }
+
+                playItem()
+            }
+        }
+
+        /**
+         * 上一曲
+         */
+        override fun playPre() {
+            list?.let {
+                when (mode) {
+                    MODE_RANDOM -> position = Random.nextInt(it.size)
+                    else -> if (position == 0) {
+                        position = it.size - 1
+                    } else {
+                        position--
+                    }
+                }
+                playItem()
+            }
+        }
+
         /**
          * 获取播放模式
          */
@@ -143,7 +179,7 @@ class AudioService : Service() {
         /**
          * 通知界面更新
          */
-        private fun nofityUpdateUi() {
+        fun nofityUpdateUi() {
             EventBus.getDefault().post(list?.get(position))
         }
 

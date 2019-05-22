@@ -14,5 +14,7 @@ interface Iservice {
     fun seekTo(progress: Int)
     fun updatePlayMode()
     fun getPlayMode():Int
+    fun playNext()
+    fun playPre()
 
 }

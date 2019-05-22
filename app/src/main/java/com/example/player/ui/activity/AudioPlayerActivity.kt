@@ -12,7 +12,6 @@ import com.example.kotlin.R
 import com.example.player.base.BaseActivity
 import com.example.player.model.AudioBean
 import com.example.player.service.AudioService
-import com.example.player.service.AudioService.Companion.mode
 import com.example.player.service.Iservice
 import com.example.player.utils.StringUtil
 import kotlinx.android.synthetic.main.activity_music_player_bottom.*
@@ -65,6 +64,9 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeek
             R.id.state -> updatePlayState()
             R.id.back -> finish()
             R.id.playMode -> updatePlayMode()
+            R.id.pre -> iService?.playPre()
+            R.id.next -> iService?.playNext()
+
         }
     }
 
@@ -129,6 +131,8 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeek
         back.setOnClickListener(this)
         progress_sk.setOnSeekBarChangeListener(this)
         playMode.setOnClickListener(this)
+        pre.setOnClickListener(this)
+        next.setOnClickListener(this)
     }
 
     /**
@@ -181,9 +185,11 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeek
         //直接传递intent
         val intent = intent
         intent.setClass(this, AudioService::class.java)
-        startService(intent)
+
         //绑定服务
         bindService(intent, conn, Context.BIND_AUTO_CREATE)
+        //开启服务
+        startService(intent)
     }
 
     var iService: Iservice? = null
