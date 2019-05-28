@@ -14,6 +14,7 @@ import com.example.player.model.AudioBean
 import com.example.player.service.AudioService
 import com.example.player.service.Iservice
 import com.example.player.utils.StringUtil
+import com.example.player.widget.PlayListPopWindow
 import kotlinx.android.synthetic.main.activity_music_player_bottom.*
 import kotlinx.android.synthetic.main.activity_music_player_middle.*
 import kotlinx.android.synthetic.main.activity_music_player_top.*
@@ -66,8 +67,17 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeek
             R.id.playMode -> updatePlayMode()
             R.id.pre -> iService?.playPre()
             R.id.next -> iService?.playNext()
-
+            R.id.playlist -> showPlayList()
         }
+    }
+
+
+    /**
+     * 显示播放列表
+     */
+    private fun showPlayList() {
+        val popWindow = PlayListPopWindow(this)
+        popWindow.showAsDropDown(audio_player_bottom, 0, -audio_player_bottom.height)
     }
 
     /**
@@ -133,6 +143,7 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeek
         playMode.setOnClickListener(this)
         pre.setOnClickListener(this)
         next.setOnClickListener(this)
+        playlist.setOnClickListener(this)
     }
 
     /**
