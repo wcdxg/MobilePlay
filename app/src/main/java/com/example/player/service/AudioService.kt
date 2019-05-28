@@ -59,6 +59,21 @@ class AudioService : Service() {
 
     inner class AudioBinder : Binder(), Iservice, MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
         /**
+         * 播放指定位置的歌曲
+         */
+        override fun playPosition(position: Int) {
+            this@AudioService.position = position
+            playItem()
+        }
+
+        /**
+         * 获取播放集合
+         */
+        override fun getPlayList(): List<AudioBean>? {
+            return list
+        }
+
+        /**
          * 下一曲
          */
         override fun playNext() {

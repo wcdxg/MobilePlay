@@ -7,12 +7,14 @@ import android.graphics.drawable.AnimationDrawable
 import android.os.Handler
 import android.os.IBinder
 import android.view.View
+import android.widget.AdapterView
 import android.widget.SeekBar
 import com.example.kotlin.R
 import com.example.player.base.BaseActivity
 import com.example.player.model.AudioBean
 import com.example.player.service.AudioService
 import com.example.player.service.Iservice
+import com.example.player.ui.adapter.PopAdapter
 import com.example.player.utils.StringUtil
 import com.example.player.widget.PlayListPopWindow
 import kotlinx.android.synthetic.main.activity_music_player_bottom.*
@@ -29,7 +31,16 @@ import org.greenrobot.eventbus.ThreadMode
  */
 const val MSG_UPDATE_PROGRESS = 0
 
-class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeekBarChangeListener {
+class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeekBarChangeListener, AdapterView.OnItemClickListener {
+
+    /**
+     * 弹出的播放列表的条目点击事件
+     */
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        //播放当前歌曲
+        iService?.playPosition(position)
+    }
+
     /**
      * @param progress 改变之后的进度
      * @param fromUser true用户手指拖动改变进度 false通过代码改变
@@ -76,8 +87,13 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeek
      * 显示播放列表
      */
     private fun showPlayList() {
-        val popWindow = PlayListPopWindow(this)
-        popWindow.showAsDropDown(audio_player_bottom, 0, -audio_player_bottom.height)
+        val list = iService?.getPlayList()
+        list?.let {
+            //创建Adapter
+            val adapter = PopAdapter(list)
+            val popWindow = PlayListPopWindow(this, adapter, this, window)
+            popWindow.showAsDropDown(audio_player_bottom, 0, -audio_player_bottom.height)
+        }
     }
 
     /**

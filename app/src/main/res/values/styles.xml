@@ -24,4 +24,9 @@
         <!--<item name="android:activityOpenEnterAnimation">@anim/activity_enter</item>-->
         <!--<item name="android:activityCloseExitAnimation">@anim/activity_exit</item>-->
     </style>
+
+    <style name="pop">
+        <item name="android:windowEnterAnimation">@anim/pop_enter</item>
+        <item name="android:windowExitAnimation">@anim/pop_exit</item>
+    </style>
 </resources>
