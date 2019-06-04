@@ -31,7 +31,8 @@ import org.greenrobot.eventbus.ThreadMode
  */
 const val MSG_UPDATE_PROGRESS = 0
 
-class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeekBarChangeListener, AdapterView.OnItemClickListener {
+class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeekBarChangeListener,
+    AdapterView.OnItemClickListener {
 
     /**
      * 弹出的播放列表的条目点击事件
@@ -160,6 +161,13 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeek
         pre.setOnClickListener(this)
         next.setOnClickListener(this)
         playlist.setOnClickListener(this)
+        lyric_view.setProgressListener {
+            //歌词进度更新
+            //更新播放进度
+            iService?.seekTo(it)
+            //进度显示更新
+            updateProgress(it)
+        }
     }
 
     /**
@@ -180,6 +188,10 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeek
         duration = iService?.getDuration() ?: 0
         //进度条设置最大值
         progress_sk.max = duration
+        //设置歌词总进度
+        lyric_view.duration = duration
+        //设置歌词
+        lyric_view.setSongName(itemBean.display_name)
         //更新播放进度
         startUpdateDuration()
         //更新播放模式图标
@@ -203,6 +215,8 @@ class AudioPlayerActivity : BaseActivity(), View.OnClickListener, SeekBar.OnSeek
         //更新进度数值
         progress.text = (StringUtil.parseDuration(pro) + "/").plus(StringUtil.parseDuration(duration))
         progress_sk.progress = pro
+        //更新歌词
+        lyric_view.updateProgress(pro)
     }
 
 

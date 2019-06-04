@@ -19,11 +19,11 @@ open class MRequest<RESPONSE>(val url: String, val handler: ResponseHandler<RESP
     /**
      * 解析网络请求结果
      */
+    @Throws(Exception::class)
     fun parseResult(result: String?): RESPONSE {
         //获取 RESPONCE 的泛型类型
         val type = (this.javaClass
             .genericSuperclass as ParameterizedType).getActualTypeArguments()[0]
-
         return gson.fromJson(result, type)
     }
 

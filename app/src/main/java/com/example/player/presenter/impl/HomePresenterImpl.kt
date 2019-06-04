@@ -2,7 +2,6 @@ package com.example.player.presenter.impl
 
 import com.example.player.base.BaseView
 import com.example.player.model.HomeItemBean
-import com.example.player.net.HomeRequest
 import com.example.player.net.ResponseHandler
 import com.example.player.presenter.interf.HomePresenter
 
@@ -42,7 +41,7 @@ class HomePresenterImpl(var homeView: BaseView<List<HomeItemBean>>?) : HomePrese
      */
     override fun loadData(offset: Int, isLoadMore: Boolean) {
         this.isLoadMore = isLoadMore
-        HomeRequest(offset, this).excute()
+//        HomeRequest(offset, this).excute()
 
 //        NetManager.manager.sendRequest(request)
     }
