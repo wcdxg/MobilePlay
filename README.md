@@ -1,2 +1,2 @@
 # MobilePlay
-Kotlin 手机影音
+Learn Kotlin 手机影音 Demo
